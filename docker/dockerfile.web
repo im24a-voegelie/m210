@@ -1,0 +1,3 @@
+FROM nginx:alpine
+
+COPY docker/app/index.html /usr/share/nginx/html/index.html
