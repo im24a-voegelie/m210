@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: flask-app
+    ports:
+      - "${APP_PORT}:5000"
+    environment:
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - FLASK_APP=app.py
+      - FLASK_RUN_HOST=0.0.0.0
+    depends_on:
+      redis:
+        condition: service_healthy
+    develop:
+      watch:
+        - action: sync+restart
+          path: .
+          target: /code
+        - action: rebuild
+          path: requirements.txt
+
+  redis:
+    image: redis:alpine
+    container_name: redis-db
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  redis-data:
