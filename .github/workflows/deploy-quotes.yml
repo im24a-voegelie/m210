@@ -2,7 +2,7 @@ name: Build and Deploy Quotes
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     paths:
       - 'quotes-app/**'
 

@@ -55,5 +55,4 @@ def getById(id):
     return jsonify({"id": r[0], "quotation": r[1], "author": r[2], "hostname": socket.gethostname()})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
- # End of recent edits   
+    app.run(host="0.0.0.0", port=10000)  
