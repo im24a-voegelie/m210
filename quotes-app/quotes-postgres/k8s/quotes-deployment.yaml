@@ -17,7 +17,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: quotes
-          image: ghcr.io/im24a-voegelie/quotes-postgres:v1
+          image: ghcr.io/im24a-voegelie/quotes-postgres:latest
           ports:
             - containerPort: 10000
           env:

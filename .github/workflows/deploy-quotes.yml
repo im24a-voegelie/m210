@@ -24,7 +24,9 @@ jobs:
         with:
           context: ./quotes-app/quotes-postgres
           push: true
-          tags: ghcr.io/${{ github.actor }}/quotes-postgres:v${{ github.run_number }}
+          tags: |
+            ghcr.io/${{ github.actor }}/quotes-postgres:v${{ github.run_number }}
+            ghcr.io/${{ github.actor }}/quotes-postgres:latest
 
       - name: Deploy to AppuIO
         run: |
