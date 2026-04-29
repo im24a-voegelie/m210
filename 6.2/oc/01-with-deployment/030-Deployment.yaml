@@ -15,11 +15,13 @@ spec:
       labels:
         app: html-openshift-app
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
       - name: html-openshift-app
         resources: {}
         ports:
         - containerPort: 8080
           protocol: TCP
-        image: ghcr.io/<Github-Username>/html-openshift-app:v1
+        image: ghcr.io/im24a-voegelie/html-openshift-app:v1
         imagePullPolicy: Always

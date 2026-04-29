@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quotes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quotes
+  template:
+    metadata:
+      labels:
+        app: quotes
+        app.kubernetes.io/part-of: quotes-app
+    spec:
+      imagePullSecrets:
+        - name: ghcr-secret
+      containers:
+        - name: quotes
+          image: ghcr.io/im24a-voegelie/quotes-postgres:v1
+          ports:
+            - containerPort: 10000
+          env:
+            - name: DB_SERVICE_NAME
+              value: postgres
+            - name: DB_NAME
+              value: quotesdb
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_PASSWORD
