@@ -16,6 +16,8 @@ spec:
       labels:
         app: quotesweb
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
         - name: quotes
           image: ghcr.io/im24a-voegelie/quotesweb:latest
