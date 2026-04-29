@@ -1,4 +1,4 @@
-# Quotesweb  
+# Quotesweb v2  
 This project is part of the Red Hat Developer Sandbox Activity entitled ["Learn Kubernetes using the Developer Sandbox for Red Hat OpenShift"](https://developers.redhat.com/developer-sandbox/activities/learn-kubernetes-using-red-hat-developer-sandbox-openshift).  
 
 ## Overview  
@@ -14,7 +14,7 @@ https://github.com/redhat-developer-demos/qotd-python.git
 ![Screen capture of application showing a quote](./images/screenshot.png)
 
 ## Associated Linux Container Image  
-[quay.io/rhdevelopers/quotesweb:v1](https://quay.io/repository/donschenck/quotesweb)  
+[quay.io/rhdevelopers/quotesweb:v2](https://quay.io/repository/donschenck/quotesweb)  
 
 ## Running in a Kubernetes cluster  
 `kubectl create -f quotesweb-deployment.yaml`  
