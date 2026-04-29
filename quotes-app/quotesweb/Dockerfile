@@ -1,22 +1,25 @@
-# pull the official base image
-FROM node:12.18-alpine
+# Stage 1: Build
+FROM node:12.18-alpine AS builder
 
-# set working direction
 WORKDIR /app
-
-# add `/app/node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
 
-# install application dependencies
 COPY package.json ./
 COPY package-lock.json ./
 RUN npm install --unsafe-perm=true --allow-root
 
-# add app
 COPY . ./
+RUN npm run build
 
-# RUN chown -R 1000:1000 ./
+# Stage 2: Production
+FROM node:12.18-alpine
+
+WORKDIR /app
+RUN npm install -g serve
+
+COPY --from=builder /app/build ./build
+
 RUN chown -R 1000:0 /app && chmod -R ug+rwx /app
 USER 1000
-# start app
-CMD ["npm", "start"]
+
+CMD ["serve", "-s", "build", "-l", "3000"]
