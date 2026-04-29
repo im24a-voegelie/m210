@@ -1,18 +1,18 @@
 # Stage 1: Build
-FROM node:12.18-alpine AS builder
+FROM node:16-alpine AS builder
 
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
 COPY package.json ./
 COPY package-lock.json ./
-RUN npm install --unsafe-perm=true --allow-root
+RUN npm install --unsafe-perm=true --allow-root --legacy-peer-deps
 
 COPY . ./
 RUN npm run build
 
 # Stage 2: Production
-FROM node:12.18-alpine
+FROM node:16-alpine
 
 WORKDIR /app
 RUN npm install -g serve
