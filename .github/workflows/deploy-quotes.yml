@@ -43,4 +43,4 @@ jobs:
           tar -xf openshift-client-linux.tar.gz
           ./oc login ${{ secrets.OPENSHIFT_SERVER }} --token=${{ secrets.OPENSHIFT_TOKEN }} --insecure-skip-tls-verify
           ./oc set image deployment/quotes quotes=ghcr.io/${{ github.actor }}/quotes-postgres:latest -n ${{ secrets.OPENSHIFT_NAMESPACE }}
-          ./oc set image deployment/quotesweb quotesweb=ghcr.io/${{ github.actor }}/quotesweb:latest -n ${{ secrets.OPENSHIFT_NAMESPACE }}
+          ./oc set image deployment/quotesweb quotes=ghcr.io/${{ github.actor }}/quotesweb:latest -n ${{ secrets.OPENSHIFT_NAMESPACE }}
