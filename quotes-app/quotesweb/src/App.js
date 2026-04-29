@@ -17,7 +17,7 @@ class App extends Component {
         </header>
         <div className="container">
           <div className="col-xs-12">
-            <h1>QuoteWeb</h1>
+            <h1>QuoteWeb v2</h1>
             <h6>Retrieves a quote every N seconds</h6>
             <div className="card">
               <div className="card-body">
